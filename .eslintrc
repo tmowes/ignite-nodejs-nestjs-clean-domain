@@ -8,7 +8,7 @@
     "import/no-extraneous-dependencies": "off",
     "sonarjs/no-duplicate-string": [
       "error",
-      6
+      9
     ]
   },
   "env": {
