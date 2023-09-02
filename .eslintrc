@@ -9,7 +9,8 @@
     "sonarjs/no-duplicate-string": [
       "error",
       9
-    ]
+    ],
+    "sonarjs/no-small-switch": "off"
   },
   "env": {
     "vitest-globals/env": true

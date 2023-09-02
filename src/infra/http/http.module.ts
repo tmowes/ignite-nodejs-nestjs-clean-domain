@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common'
 import { DatabaseModule } from '@infra/database/database.module'
 import { CreateQuestionUseCase } from '@domains/forum/application/use-cases/create-question'
+import { CryptographyModule } from '@infra/cryptography/cryptography.module'
+import { AuthenticateStudentUseCase } from '@domains/forum/application/use-cases/authenticate-student'
+import { RegisterStudentUseCase } from '@domains/forum/application/use-cases/register-student'
 
 import { AuthenticateController } from './controllers/authenticate.controller'
 import { CreateAccountController } from './controllers/create-account.controller'
@@ -8,13 +11,18 @@ import { CreateQuestionController } from './controllers/create-question.controll
 import { FetchRecentQuestionsController } from './controllers/fetch-recent-questions.controller'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CryptographyModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
     CreateQuestionController,
     FetchRecentQuestionsController,
   ],
-  providers: [CreateQuestionUseCase, FetchRecentQuestionsController],
+  providers: [
+    CreateQuestionUseCase,
+    FetchRecentQuestionsController,
+    RegisterStudentUseCase,
+    AuthenticateStudentUseCase,
+  ],
 })
 export class HttpModule {}
