@@ -1,7 +1,7 @@
 {
   "name": "ignite-nodejs-nestjs-clean-domain",
-  "version": "1.0.0",
   "description": "Nest clean domain forum with notification",
+  "version": "1.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {

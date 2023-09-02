@@ -1,1 +1,1 @@
-export type DomainEventCallback = (event: any) => void
+export type DomainEventCallback = (event: unknown) => void

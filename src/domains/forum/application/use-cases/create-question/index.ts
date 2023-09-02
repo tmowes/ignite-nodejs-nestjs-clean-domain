@@ -4,18 +4,17 @@ import { QuestionsRepository } from '@domains/forum/application/repositories/que
 import { QuestionAttachment } from '@domains/forum/enterprise/entities/question-attachment'
 import { QuestionAttachmentList } from '@domains/forum/enterprise/entities/question-attachment-list'
 import { right } from '@core/entities/either'
+import { Injectable } from '@nestjs/common'
 
 import { CreateQuestionUseCaseRequest, CreateQuestionUseCaseResponse } from './types'
 
+@Injectable()
 export class CreateQuestionUseCase {
   constructor(private questionsRepository: QuestionsRepository) {}
 
-  async execute({
-    authorId,
-    title,
-    content,
-    attachmentsIds,
-  }: CreateQuestionUseCaseRequest): Promise<CreateQuestionUseCaseResponse> {
+  async execute(props: CreateQuestionUseCaseRequest): Promise<CreateQuestionUseCaseResponse> {
+    const { authorId, title, content, attachmentsIds } = props
+
     const question = Question.create({
       authorId: new UniqueEntityID(authorId),
       title,

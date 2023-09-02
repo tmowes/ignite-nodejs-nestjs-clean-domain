@@ -5,11 +5,11 @@ import { QuestionAttachmentList } from '../question-attachment-list'
 
 export type QuestionProps = {
   authorId: UniqueEntityID
-  bestAnswerId?: UniqueEntityID
+  bestAnswerId?: UniqueEntityID | null
   title: string
   content: string
   slug: Slug
   attachments: QuestionAttachmentList
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
 }
