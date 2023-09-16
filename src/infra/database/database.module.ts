@@ -13,8 +13,8 @@ import { PrismaQuestionCommentsRepository } from './prisma/repositories/prisma-q
 import { PrismaAnswerCommentsRepository } from './prisma/repositories/prisma-answer-comments-repository'
 import { PrismaQuestionsRepository } from './prisma/repositories/prisma-questions-repository'
 import { PrismaAnswersRepository } from './prisma/repositories/prisma-answers-repository'
-import { PrismaService } from './prisma/prisma.service'
 import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-repository'
+import { PrismaService } from './prisma/prisma.service'
 
 @Module({
   providers: [
@@ -56,6 +56,7 @@ import { PrismaStudentsRepository } from './prisma/repositories/prisma-students-
     AnswersRepository,
     AnswerCommentsRepository,
     AnswerAttachmentsRepository,
+    StudentsRepository,
   ],
 })
 export class DatabaseModule {}

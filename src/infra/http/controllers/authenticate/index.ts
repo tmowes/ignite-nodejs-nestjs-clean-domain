@@ -36,6 +36,6 @@ export class AuthenticateController {
       }
     }
 
-    return { access_token: result.value }
+    return { access_token: result.value.accessToken }
   }
 }

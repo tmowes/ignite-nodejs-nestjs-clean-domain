@@ -403,3 +403,4 @@ dist
 # Docker
 data
 dev*.*
+prisma/test

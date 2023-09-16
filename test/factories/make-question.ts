@@ -2,7 +2,6 @@ import { faker } from '@faker-js/faker'
 import { UniqueEntityID } from '@core/entities/unique-entity-id'
 import { Question } from '@domains/forum/enterprise/entities/question'
 import { QuestionProps } from '@domains/forum/enterprise/entities/question/types'
-import { Slug } from '@domains/forum/enterprise/entities/value-objects/slug'
 import { PrismaQuestionMapper } from '@infra/database/prisma/mappers/prisma-question-mapper'
 import { PrismaService } from '@infra/database/prisma/prisma.service'
 import { Injectable } from '@nestjs/common'
@@ -15,7 +14,6 @@ export function makeQuestion(
     {
       authorId: new UniqueEntityID(),
       title: faker.lorem.sentence(),
-      slug: Slug.create('example-question'),
       content: faker.lorem.paragraphs(),
       ...override,
     },
