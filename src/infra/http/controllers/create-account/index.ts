@@ -1,26 +1,18 @@
 import {
-  BadRequestException,
   Body,
-  ConflictException,
-  Controller,
-  HttpCode,
   Post,
   UsePipes,
+  Controller,
+  BadRequestException,
+  ConflictException,
+  HttpCode,
 } from '@nestjs/common'
-import { z } from 'zod'
-import { RegisterStudentUseCase } from '@domains/forum/application/use-cases/register-student'
-import { StudentAlreadyExistsError } from '@core/errors/student-already-exists-error'
 import { Public } from '@infra/auth/public'
+import { StudentAlreadyExistsError } from '@core/errors/student-already-exists-error'
+import { RegisterStudentUseCase } from '@domains/forum/application/use-cases/register-student'
 
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-
-const createAccountBodySchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  password: z.string(),
-})
-
-type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>
+import { bodyValidationPipe } from './schemas'
+import { CreateAccountBodySchema } from './types'
 
 @Controller('/accounts')
 @Public()
@@ -29,7 +21,7 @@ export class CreateAccountController {
 
   @Post()
   @HttpCode(201)
-  @UsePipes(new ZodValidationPipe(createAccountBodySchema))
+  @UsePipes(bodyValidationPipe)
   async handle(@Body() body: CreateAccountBodySchema) {
     const { name, email, password } = body
 

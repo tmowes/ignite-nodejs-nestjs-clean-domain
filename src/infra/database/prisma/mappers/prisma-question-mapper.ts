@@ -1,4 +1,4 @@
-import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { UniqueEntityID } from '@core/entities/unique-entity-id'
 import { Question } from '@domains/forum/enterprise/entities/question'
 import { Slug } from '@domains/forum/enterprise/entities/value-objects/slug'
 import { Question as PrismaQuestion, Prisma } from '@prisma/client'

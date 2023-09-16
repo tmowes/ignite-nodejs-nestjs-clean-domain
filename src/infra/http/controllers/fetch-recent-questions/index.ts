@@ -1,20 +1,9 @@
-import { BadRequestException, Controller, Get, Query } from '@nestjs/common'
-import { z } from 'zod'
+import { Controller, BadRequestException, Get, Query } from '@nestjs/common'
 import { FetchRecentQuestionsUseCase } from '@domains/forum/application/use-cases/fetch-recent-questions'
+import { QuestionPresenter } from '@infra/http/presenters/question-presenter'
 
-import { ZodValidationPipe } from '../pipes/zod-validation-pipe'
-import { QuestionPresenter } from '../presenters/question-presenter'
-
-const pageQueryParamSchema = z
-  .string()
-  .optional()
-  .default('1')
-  .transform(Number)
-  .pipe(z.number().min(1))
-
-const queryValidationPipe = new ZodValidationPipe(pageQueryParamSchema)
-
-type PageQueryParamSchema = z.infer<typeof pageQueryParamSchema>
+import { queryValidationPipe } from './schemas'
+import { PageQueryParamSchema } from './types'
 
 @Controller('/questions')
 export class FetchRecentQuestionsController {

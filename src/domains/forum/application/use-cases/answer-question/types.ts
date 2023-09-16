@@ -2,7 +2,7 @@ import { Either } from '@core/entities/either'
 import { Answer } from '@domains/forum/enterprise/entities/answer'
 
 export type AnswerQuestionUseCaseRequest = {
-  instructorId: string
+  authorId: string
   questionId: string
   content: string
   attachmentsIds: string[]
