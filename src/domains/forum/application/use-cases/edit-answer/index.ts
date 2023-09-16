@@ -6,9 +6,11 @@ import { UniqueEntityID } from '@core/entities/unique-entity-id'
 import { left, right } from '@core/entities/either'
 import { NotAllowedError } from '@core/errors/not-allowed'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
+import { Injectable } from '@nestjs/common'
 
 import { EditAnswerUseCaseRequest, EditAnswerUseCaseResponse } from './types'
 
+@Injectable()
 export class EditAnswerUseCase {
   constructor(
     private answersRepository: AnswersRepository,

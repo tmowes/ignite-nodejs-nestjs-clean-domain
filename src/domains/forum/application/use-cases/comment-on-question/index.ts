@@ -4,9 +4,11 @@ import { QuestionCommentsRepository } from '@domains/forum/application/repositor
 import { QuestionComment } from '@domains/forum/enterprise/entities/question-comment'
 import { left, right } from '@core/entities/either'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
+import { Injectable } from '@nestjs/common'
 
 import { CommentOnQuestionUseCaseRequest, CommentOnQuestionUseCaseResponse } from './types'
 
+@Injectable()
 export class CommentOnQuestionUseCase {
   constructor(
     private questionsRepository: QuestionsRepository,

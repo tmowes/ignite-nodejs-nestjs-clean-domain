@@ -2,9 +2,11 @@ import { AnswerCommentsRepository } from '@domains/forum/application/repositorie
 import { left, right } from '@core/entities/either'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
 import { NotAllowedError } from '@core/errors/not-allowed'
+import { Injectable } from '@nestjs/common'
 
 import { DeleteCommentOnAnswerUseCaseRequest, DeleteCommentOnAnswerUseCaseResponse } from './types'
 
+@Injectable()
 export class DeleteCommentOnAnswerUseCase {
   constructor(private answerCommentsRepository: AnswerCommentsRepository) {}
 

@@ -2,9 +2,11 @@ import { AnswersRepository } from '@domains/forum/application/repositories/answe
 import { left, right } from '@core/entities/either'
 import { NotAllowedError } from '@core/errors/not-allowed'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
+import { Injectable } from '@nestjs/common'
 
 import { DeleteAnswerUseCaseRequest, DeleteAnswerUseCaseResponse } from './types'
 
+@Injectable()
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
 

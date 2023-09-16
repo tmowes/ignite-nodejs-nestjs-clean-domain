@@ -3,12 +3,14 @@ import { QuestionsRepository } from '@domains/forum/application/repositories/que
 import { left, right } from '@core/entities/either'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
 import { NotAllowedError } from '@core/errors/not-allowed'
+import { Injectable } from '@nestjs/common'
 
 import {
   ChooseQuestionBestAnswerUseCaseRequest,
   ChooseQuestionBestAnswerUseCaseResponse,
 } from './types'
 
+@Injectable()
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
     private questionsRepository: QuestionsRepository,
