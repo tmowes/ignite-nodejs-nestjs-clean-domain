@@ -21,7 +21,7 @@ export class PrismaAnswerAttachmentMapper {
     const attachmentIds = attachments.map(({ attachmentId }) => attachmentId.toString())
     return {
       where: { id: { in: attachmentIds } },
-      data: { questionId: attachments[0].answerId.toString() },
+      data: { answerId: attachments[0].answerId.toString() },
     }
   }
 }

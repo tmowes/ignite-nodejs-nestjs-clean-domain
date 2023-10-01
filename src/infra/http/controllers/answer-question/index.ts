@@ -19,8 +19,6 @@ export class AnswerQuestionController {
     const { content, attachments } = body
     const userId = user.sub
 
-    console.log('/questions/:questionId/answers', { attachments })
-
     const result = await this.answerQuestion.execute({
       content,
       questionId,
