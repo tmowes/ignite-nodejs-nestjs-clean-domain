@@ -1,8 +1,10 @@
-import 'dotenv/config'
-
+import { config } from 'dotenv'
 import { PrismaClient } from '@prisma/client'
 import { randomUUID } from 'node:crypto'
 import { execSync } from 'node:child_process'
+
+config({ path: '.env', override: true })
+config({ path: '.env.test', override: true })
 
 const prisma = new PrismaClient()
 
@@ -12,7 +14,7 @@ function generateUniqueDatabaseURL(schemaId: string) {
   }
 
   if (process.env.DATABASE_URL.startsWith('file:')) {
-    databases.push(schemaId)
+    // databases.push(schemaId)
     return `file:./test/${schemaId}.db`
   }
 
@@ -24,7 +26,7 @@ function generateUniqueDatabaseURL(schemaId: string) {
 }
 
 const schemaId = randomUUID()
-const databases: string[] = []
+// const databases: string[] = []
 
 beforeAll(async () => {
   const databaseURL = generateUniqueDatabaseURL(schemaId)
@@ -40,8 +42,8 @@ afterAll(async () => {
     await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`)
   }
   await prisma.$disconnect()
-  databases.forEach((database) => {
-    execSync(`del /s /q prisma\\test\\${database}.db`)
-    console.log(`Clearing database ${database}`)
-  })
-}, 10000)
+  // databases.forEach((database) => {
+  //   execSync(`del /s /q prisma\\test\\${database}.db`)
+  //   console.log(`Clearing database ${database}`)
+  // })
+})

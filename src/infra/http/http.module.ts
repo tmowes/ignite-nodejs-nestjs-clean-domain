@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { DatabaseModule } from '@infra/database/database.module'
 import { CryptographyModule } from '@infra/cryptography/cryptography.module'
+import { StorageModule } from '@infra/storage/storage.module'
 //
 import { AnswerQuestionUseCase } from '@domains/forum/application/use-cases/answer-question'
 import { AuthenticateStudentUseCase } from '@domains/forum/application/use-cases/authenticate-student'
@@ -20,6 +21,7 @@ import { FetchQuestionAnswersUseCase } from '@domains/forum/application/use-case
 import { FetchRecentQuestionsUseCase } from '@domains/forum/application/use-cases/fetch-recent-questions'
 import { GetQuestionBySlugUseCase } from '@domains/forum/application/use-cases/get-question-by-slug'
 import { RegisterStudentUseCase } from '@domains/forum/application/use-cases/register-student'
+import { UploadAndCreateAttachmentUseCase } from '@domains/forum/application/use-cases/upload-attachment'
 
 import { AnswerQuestionController } from './controllers/answer-question'
 import { AuthenticateController } from './controllers/authenticate'
@@ -39,9 +41,10 @@ import { FetchRecentQuestionsController } from './controllers/fetch-recent-quest
 import { GetQuestionBySlugController } from './controllers/get-question-by-slug'
 import { FetchCommentsOnAnswerController } from './controllers/fetch-comments-on-answer'
 import { FetchCommentsOnQuestionController } from './controllers/fetch-comments-on-question'
+import { UploadAttachmentController } from './controllers/upload-attachment'
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, StorageModule],
   controllers: [
     AnswerQuestionController,
     AuthenticateController,
@@ -61,6 +64,7 @@ import { FetchCommentsOnQuestionController } from './controllers/fetch-comments-
     FetchQuestionAnswersController,
     FetchRecentQuestionsController,
     GetQuestionBySlugController,
+    UploadAttachmentController,
     // RegisterStudentController,
   ],
   providers: [
@@ -82,6 +86,7 @@ import { FetchCommentsOnQuestionController } from './controllers/fetch-comments-
     FetchRecentQuestionsUseCase,
     GetQuestionBySlugUseCase,
     RegisterStudentUseCase,
+    UploadAndCreateAttachmentUseCase,
   ],
 })
 export class HttpModule {}
