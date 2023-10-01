@@ -1,6 +1,7 @@
 import { Controller, BadRequestException, Get, Query, Param } from '@nestjs/common'
 import { CommentPresenter } from '@infra/http/presenters/comment-presenter'
 import { FetchCommentsOnQuestionUseCase } from '@domains/forum/application/use-cases/fetch-comments-on-question'
+import { CommentWithAuthorPresenter } from '@infra/http/presenters/comment-with-author-presenter'
 
 import { queryValidationPipe } from './schemas'
 import { PageQueryParamSchema } from './types'
@@ -23,8 +24,8 @@ export class FetchCommentsOnQuestionController {
       throw new BadRequestException()
     }
 
-    const { questionComments } = result.value
+    const { comments } = result.value
 
-    return { comments: questionComments.map(CommentPresenter.toHTTP) }
+    return { comments: comments.map(CommentWithAuthorPresenter.toHTTP) }
   }
 }

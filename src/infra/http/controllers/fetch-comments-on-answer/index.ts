@@ -1,6 +1,6 @@
 import { Controller, BadRequestException, Get, Query, Param } from '@nestjs/common'
-import { CommentPresenter } from '@infra/http/presenters/comment-presenter'
 import { FetchCommentsOnAnswerUseCase } from '@domains/forum/application/use-cases/fetch-comments-on-answer'
+import { CommentWithAuthorPresenter } from '@infra/http/presenters/comment-with-author-presenter'
 
 import { queryValidationPipe } from './schemas'
 import { PageQueryParamSchema } from './types'
@@ -14,17 +14,14 @@ export class FetchCommentsOnAnswerController {
     @Query('page', queryValidationPipe) page: PageQueryParamSchema,
     @Param('answerId') answerId: string,
   ) {
-    const result = await this.fetchAnswerComments.execute({
-      page,
-      answerId,
-    })
+    const result = await this.fetchAnswerComments.execute({ page, answerId })
 
     if (result.isLeft()) {
       throw new BadRequestException()
     }
 
-    const { answerComments } = result.value
+    const { comments } = result.value
 
-    return { comments: answerComments.map(CommentPresenter.toHTTP) }
+    return { comments: comments.map(CommentWithAuthorPresenter.toHTTP) }
   }
 }

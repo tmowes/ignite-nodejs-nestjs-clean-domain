@@ -1,5 +1,5 @@
 import { Either } from '@core/entities/either'
-import { QuestionComment } from '@domains/forum/enterprise/entities/question-comment'
+import { CommentWithAuthor } from '@domains/forum/enterprise/entities/value-objects/comment-with-author'
 
 export type FetchCommentsOnQuestionUseCaseRequest = {
   questionId: string
@@ -9,6 +9,6 @@ export type FetchCommentsOnQuestionUseCaseRequest = {
 export type FetchCommentsOnQuestionUseCaseResponse = Either<
   null,
   {
-    questionComments: QuestionComment[]
+    comments: CommentWithAuthor[]
   }
 >

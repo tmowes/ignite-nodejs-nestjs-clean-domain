@@ -12,10 +12,10 @@ export class FetchCommentsOnAnswerUseCase {
     answerId,
     page,
   }: FetchCommentsOnAnswerUseCaseRequest): Promise<FetchCommentsOnAnswerUseCaseResponse> {
-    const answerComments = await this.answerCommentsRepository.findManyByAnswerId(answerId, {
+    const comments = await this.answerCommentsRepository.findManyByAnswerIdWithAuthor(answerId, {
       page,
     })
 
-    return right({ answerComments })
+    return right({ comments })
   }
 }
