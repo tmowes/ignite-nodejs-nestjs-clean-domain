@@ -42,29 +42,27 @@ describe('Edit question (E2E)', () => {
 
     const accessToken = jwt.sign({ sub: user.id.toString() })
 
+    const question = await questionFactory.makePrismaQuestion({ authorId: user.id })
+
     const attachment1 = await attachmentFactory.makePrismaAttachment()
     const attachment2 = await attachmentFactory.makePrismaAttachment()
 
-    const question = await questionFactory.makePrismaQuestion({
-      authorId: user.id,
-    })
+    const questionId = question.id
 
     await questionAttachmentFactory.makePrismaQuestionAttachment({
       attachmentId: attachment1.id,
-      questionId: question.id,
+      questionId,
     })
 
     await questionAttachmentFactory.makePrismaQuestionAttachment({
       attachmentId: attachment2.id,
-      questionId: question.id,
+      questionId,
     })
 
     const attachment3 = await attachmentFactory.makePrismaAttachment()
 
-    const questionId = question.id.toString()
-
     const response = await request(app.getHttpServer())
-      .put(`/questions/${questionId}`)
+      .put(`/questions/${questionId.toString()}`)
       .set('Authorization', `Bearer ${accessToken}`)
       .send({
         title: 'New title',
