@@ -1,10 +1,12 @@
 import { left, right } from '@core/entities/either'
 import { NotAllowedError } from '@core/errors/not-allowed'
 import { ResourceNotFoundError } from '@core/errors/resource-not-found'
+import { Injectable } from '@nestjs/common'
 
 import { NotificationsRepository } from '../../repositories/notifications-repository'
 import { ReadNotificationUseCaseRequest, ReadNotificationUseCaseResponse } from './types'
 
+@Injectable()
 export class ReadNotificationUseCase {
   constructor(private notificationsRepository: NotificationsRepository) {}
 

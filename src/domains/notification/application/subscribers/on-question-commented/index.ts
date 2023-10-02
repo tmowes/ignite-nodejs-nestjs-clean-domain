@@ -2,9 +2,11 @@ import { DomainEvents } from '@core/events/domain-events'
 import { EventHandler } from '@core/events/event-handler'
 import { QuestionsRepository } from '@domains/forum/application/repositories/questions-repository'
 import { QuestionCommentedEvent } from '@domains/forum/enterprise/events/question-commented'
+import { Injectable } from '@nestjs/common'
 
 import { SendNotificationUseCase } from '../../use-cases/send-notification'
 
+@Injectable()
 export class OnQuestionCommented implements EventHandler {
   constructor(
     private questionsRepository: QuestionsRepository,
